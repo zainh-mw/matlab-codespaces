@@ -14,5 +14,22 @@
       "startInDesktop": "true"
     }
   },
+  "containerEnv": {
+    "MATLAB_USERWORKDIR": "${containerWorkspaceFolder}",
+    "MATLAB_USE_USERWORK": "1"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "MathWorks.language-matlab"
+      ],
+      "settings": {
+        "MATLAB.indexWorkspace": true,
+        "MATLAB.matlabConnectionTiming": "onDemand",
+        "MATLAB.telemetry": true,
+        "MATLAB.signIn": true
+      }
+    }
+  },
   "containerUser": "vscode"
 }
