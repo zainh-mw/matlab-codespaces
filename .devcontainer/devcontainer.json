@@ -17,13 +17,7 @@
   "portsAttributes": {
     "8888": {
       "label": "MATLAB",
-      // "onAutoForward": "openBrowser"
-      // "onAutoForward": "openBrowserOnce"
       "onAutoForward": "openPreview"
-      // Open Preview Pros & Cons:
-      // Pros: Embedded webview is nice for login purposes.
-      // Cons: MATLAB does not render in the embedded view.
-      // "onAutoForward": "notify"
     }
   },
   "waitFor": "updateContentCommand",
@@ -38,7 +32,7 @@
   "containerEnv": {
     "MATLAB_USERWORKDIR": "${containerWorkspaceFolder}",
     "MATLAB_USE_USERWORK": "1",
-    // "MWI_CUSTOM_HTTP_HEADERS": "{'Content-Security-Policy': 'frame-ancestors *'}",
+    // Enable embedding the desktop into VSCode's Simple Browser
     "MWI_CUSTOM_HTTP_HEADERS": "{\"Content-Security-Policy\": \"frame-ancestors *\"}"
   },
   // Configure VSCode Extensions

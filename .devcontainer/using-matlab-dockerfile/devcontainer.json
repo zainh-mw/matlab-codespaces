@@ -1,42 +1,52 @@
 {
     "name": "Using matlab-dockerfile",
-    "build": {
-        // See: https://github.com/mathworks-ref-arch/matlab-dockerfile
-        "dockerfile": "Dockerfile",
-        "args": {
-            "MATLAB_RELEASE": "r2024b",
-            "MATLAB_PRODUCT_LIST": "MATLAB Symbolic_Math_Toolbox"
-        }
-    },
+    // Source: https://github.com/mathworks-ref-arch/matlab-dockerfile
+    "image": "ghcr.io/mathworks-ref-arch/matlab-dockerfile/matlab:R2024b",
+    // Update the contents of the Dockerfile in this folder to build your own, and uncomment the section below:
+    // "build": {
+    //     "dockerfile": "Dockerfile",
+    //     "args": {
+    //         "MATLAB_RELEASE": "r2024b",
+    //         "MATLAB_PRODUCT_LIST": "MATLAB Symbolic_Math_Toolbox"
+    //     }
+    // },
     "hostRequirements": {
         "cpus": 4
     },
-    // Comment out the rest of this file if you do not want to use MATLAB in a browser
     "portsAttributes": {
         "8888": {
             "label": "MATLAB",
-            "onAutoForward": "openBrowser"
+            "onAutoForward": "openPreview"
         }
     },
     "waitFor": "updateContentCommand",
     // Installing GIT to support codespaces & devcontainer workflows
     "onCreateCommand": "sudo apt-get update && sudo apt-get install --no-install-recommends -y git python3 python3-pip xvfb",
-    "updateContentCommand": "sudo python3 -m pip install --upgrade matlab-proxy",
+    "updateContentCommand": "sudo python3 -m pip install --upgrade matlab-proxy jupyter-matlab-proxy jupyterlab && sudo install-matlab-kernelspec",
     "postStartCommand": "env MWI_APP_PORT=8888 MWI_ENABLE_TOKEN_AUTH=False matlab-proxy-app",
     "containerEnv": {
         "MATLAB_USERWORKDIR": "${containerWorkspaceFolder}",
-        "MATLAB_USE_USERWORK": "1"
+        "MATLAB_USE_USERWORK": "1",
+        // Enable embedding the desktop into VSCode's Simple Browser
+        "MWI_CUSTOM_HTTP_HEADERS": "{\"Content-Security-Policy\": \"frame-ancestors *\"}"
     },
+    // Configure VSCode Extensions
     "customizations": {
         "vscode": {
             "extensions": [
-                "MathWorks.language-matlab"
+                "MathWorks.language-matlab",
+                "ms-toolsai.jupyter",
+                "ms-python.python"
             ],
             "settings": {
                 "MATLAB.indexWorkspace": true,
-                "MATLAB.matlabConnectionTiming": "onDemand",
+                "MATLAB.matlabConnectionTiming": "onStart",
                 "MATLAB.telemetry": true,
-                "MATLAB.signIn": true
+                "MATLAB.signIn": true,
+                // Marks MATLAB Kernel as a trusted source
+                "jupyter.kernels.trusted": [
+                    "/usr/share/jupyter/kernels/jupyter_matlab_kernel/kernel.json"
+                ]
             }
         }
     }
