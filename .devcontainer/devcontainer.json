@@ -1,6 +1,15 @@
 {
-  "name": "Open MATLAB in browser",
+  /* Default DevContainer configuration file demonstrates
+    1. Uses pre-built container from Dockerhub (mathworks/matlab)
+    2. Configured for following modes of access:
+      a. MATLAB in a Browser
+      b. Directly from VSCode, using the MATLAB extension for VSCode
+      c. Using Jupyter Notebooks in VSCode
+      d. Start Codespace in Jupyter
+  */
+  "name": "Based on DockerHub Image",
   // See https://hub.docker.com/r/mathworks/matlab/tags for available images.
+  // NOTE to self:  Pulling from GHCR can be faster, do we want to pull from the matlab-dockerfile repo instead?
   "image": "mathworks/matlab:latest",
   "hostRequirements": {
     "cpus": 4
@@ -8,32 +17,44 @@
   "portsAttributes": {
     "8888": {
       "label": "MATLAB",
-      "onAutoForward": "openBrowser"
+      // "onAutoForward": "openBrowser"
+      // "onAutoForward": "openBrowserOnce"
+      "onAutoForward": "openPreview"
+      // "onAutoForward": "notify"
     }
   },
   "waitFor": "updateContentCommand",
   "onCreateCommand": {
     // Installing GIT to support codespaces & devcontainer workflows
-    "install-dependencies": "sudo apt-get update && sudo apt-get install --no-install-recommends -y git python3 python3-pip xvfb"
+    "install-dependencies": "sudo apt-get update && sudo apt-get install --no-install-recommends -y git xvfb"
   },
-  "updateContentCommand": "sudo python3 -m pip install --upgrade matlab-proxy",
+  // Use PIPX to update the existing installation of matlab-proxy
+  "updateContentCommand": "pipx upgrade matlab-proxy && pipx inject --include-apps --include-deps matlab-proxy jupyter-matlab-proxy jupyterlab",
   "postStartCommand": "env MWI_APP_PORT=8888 MWI_ENABLE_TOKEN_AUTH=False run.sh -browser",
+  // Configure MATLAB's startup folder
   "containerEnv": {
     "MATLAB_USERWORKDIR": "${containerWorkspaceFolder}",
     "MATLAB_USE_USERWORK": "1"
   },
-  // For releases older than R2022a use the following instead:
-  // "postStartCommand": "env MWI_APP_PORT=8888 MWI_ENABLE_TOKEN_AUTH=False matlab-proxy-app"
+  // Configure VSCode Extensions
   "customizations": {
     "vscode": {
       "extensions": [
-        "MathWorks.language-matlab"
+        "MathWorks.language-matlab",
+        "ms-toolsai.jupyter",
+        "ms-python.python"
       ],
       "settings": {
         "MATLAB.indexWorkspace": true,
-        "MATLAB.matlabConnectionTiming": "onDemand",
+        "MATLAB.matlabConnectionTiming": "onStart",
         "MATLAB.telemetry": true,
-        "MATLAB.signIn": true
+        "MATLAB.signIn": true,
+        // Adds MATLAB's PIPX environments to Python indexer
+        "python.venvPath": "/home/matlab/.local/pipx/venvs/",
+        // Marks MATLAB Kernel as a trusted source
+        "jupyter.kernels.trusted": [
+          "/home/matlab/.local/pipx/venvs/matlab-proxy/share/jupyter/kernels/jupyter_matlab_kernel/kernel.json"
+        ]
       }
     }
   }
