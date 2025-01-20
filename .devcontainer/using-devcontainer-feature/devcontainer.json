@@ -20,6 +20,7 @@
       // Set startInDesktop to false, if you do not want the MATLAB Desktop 
       "startInDesktop": "true",
       "installJupyterMatlabProxy": true
+      // TODO: Prabhakk to update devcontainer-feature to use install-matlab-kernelspec
     },
     "ghcr.io/devcontainers/features/python": {
       "version": "os-provided",
@@ -28,7 +29,7 @@
     }
   },
   "containerEnv": {
-    "MWI_APP_PORT": "8888",
+    "MWI_ENABLE_TOKEN_AUTH": "False",
     "MATLAB_USERWORKDIR": "${containerWorkspaceFolder}",
     "MATLAB_USE_USERWORK": "1",
     // Enable embedding the desktop into VSCode's Simple Browser
@@ -60,5 +61,6 @@
   "hostRequirements": {
     "cpus": 4
   },
+  // Need to specify a user to use the startInDesktop feature.
   "containerUser": "vscode"
 }
