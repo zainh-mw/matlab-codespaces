@@ -1,17 +1,33 @@
 {
-    "name": "Using matlab-dockerfile",
-    // Source: https://github.com/mathworks-ref-arch/matlab-dockerfile
-    "image": "ghcr.io/mathworks-ref-arch/matlab-dockerfile/matlab:R2024b",
-    // Update the contents of the Dockerfile in this folder to build your own, and uncomment the section below:
-    // "build": {
-    //     "dockerfile": "Dockerfile",
-    //     "args": {
-    //         "MATLAB_RELEASE": "r2024b",
-    //         "MATLAB_PRODUCT_LIST": "MATLAB Symbolic_Math_Toolbox"
-    //     }
-    // },
-    "hostRequirements": {
-        "cpus": 4
+    /* This DevContainer configuration demonstrates
+        1. Building image from Dockerfile from mathworks-ref-arch/matlab-dockerfile
+        2. Installation of MATLAB Integration for Jupyter & JupyterLab  
+        3. Configuration of VSCode environment for following modes of access:
+            a. MATLAB in a Browser
+            b. Directly from VSCode, using the MATLAB extension for VSCode
+            c. Using Jupyter Notebooks in VSCode
+            d. Start Codespace in Jupyter
+    See: https://github.com/mathworks-ref-arch/matlab-dockerfile
+    */
+    "name": "Built using MathWorks Dockerfile Reference Architecture",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "MATLAB_RELEASE": "r2024b",
+            "MATLAB_PRODUCT_LIST": "MATLAB Symbolic_Math_Toolbox"
+        }
+    },
+    "onCreateCommand": {
+        "install-dependencies": "sudo apt-get update && sudo apt-get install --no-install-recommends -y git python3 python3-pip xvfb"
+    },
+    // Use system python to install MATLAB Integration for Jupyter and JupyterLab
+    "updateContentCommand": {
+        "install-mifj-and-jupyterlab": "sudo python3 -m pip install --upgrade matlab-proxy jupyter-matlab-proxy jupyterlab && sudo install-matlab-kernelspec"
+    },
+    "waitFor": "updateContentCommand",
+    // Comment out the postStart Command if you do not want the MATLAB Desktop
+    "postStartCommand": {
+        "start-matlab-desktop": "env MWI_APP_PORT=8888 MWI_ENABLE_TOKEN_AUTH=False matlab-proxy-app"
     },
     "portsAttributes": {
         "8888": {
@@ -19,11 +35,6 @@
             "onAutoForward": "openPreview"
         }
     },
-    "waitFor": "updateContentCommand",
-    // Installing GIT to support codespaces & devcontainer workflows
-    "onCreateCommand": "sudo apt-get update && sudo apt-get install --no-install-recommends -y git python3 python3-pip xvfb",
-    "updateContentCommand": "sudo python3 -m pip install --upgrade matlab-proxy jupyter-matlab-proxy jupyterlab && sudo install-matlab-kernelspec",
-    "postStartCommand": "env MWI_APP_PORT=8888 MWI_ENABLE_TOKEN_AUTH=False matlab-proxy-app",
     "containerEnv": {
         "MATLAB_USERWORKDIR": "${containerWorkspaceFolder}",
         "MATLAB_USE_USERWORK": "1",
@@ -39,9 +50,6 @@
                 "ms-python.python"
             ],
             "settings": {
-                "MATLAB.indexWorkspace": true,
-                "MATLAB.matlabConnectionTiming": "onStart",
-                "MATLAB.telemetry": true,
                 "MATLAB.signIn": true,
                 // Marks MATLAB Kernel as a trusted source
                 "jupyter.kernels.trusted": [
@@ -49,5 +57,8 @@
                 ]
             }
         }
-    }
+    },
+    "hostRequirements": {
+        "cpus": 4
+    },
 }

@@ -1,18 +1,25 @@
 {
-  /* Default DevContainer configuration file demonstrates
-    1. Uses pre-built container from Dockerhub (mathworks/matlab)
-    2. Configured for following modes of access:
-      a. MATLAB in a Browser
-      b. Directly from VSCode, using the MATLAB extension for VSCode
-      c. Using Jupyter Notebooks in VSCode
-      d. Start Codespace in Jupyter
+  /* This DevContainer configuration file demonstrates
+      1. Using the mathworks/matlab image on Dockerhub 
+      2. Installation of MATLAB Integration for Jupyter & JupyterLab  
+      3. Configuration of VSCode environment for following modes of access:
+          a. MATLAB in a Browser
+          b. Directly from VSCode, using the MATLAB extension for VSCode
+          c. Using Jupyter Notebooks in VSCode
+          d. Start Codespace in Jupyter
+  See: https://hub.docker.com/r/mathworks/matlab for available images.
   */
-  "name": "Based on DockerHub Image",
-  // See https://hub.docker.com/r/mathworks/matlab/tags for available images.
-  // NOTE to self:  Pulling from GHCR can be faster, do we want to pull from the matlab-dockerfile repo instead?
+  "name": "Built using MathWorks Docker Hub Image",
   "image": "mathworks/matlab:latest",
-  "hostRequirements": {
-    "cpus": 4
+  "onCreateCommand": {
+    "install-dependencies": "sudo apt-get update && sudo apt-get install --no-install-recommends -y git xvfb"
+  },
+  "updateContentCommand": {
+    "install-mifj-and-jupyterlab": "pipx upgrade matlab-proxy && pipx inject --include-apps --include-deps matlab-proxy jupyter-matlab-proxy jupyterlab"
+  },
+  "waitFor": "updateContentCommand",
+  "postStartCommand": {
+    "start-matlab-desktop": "env MWI_APP_PORT=8888 MWI_ENABLE_TOKEN_AUTH=False run.sh -browser"
   },
   "portsAttributes": {
     "8888": {
@@ -20,16 +27,8 @@
       "onAutoForward": "openPreview"
     }
   },
-  "waitFor": "updateContentCommand",
-  "onCreateCommand": {
-    // Installing GIT to support codespaces & devcontainer workflows
-    "install-dependencies": "sudo apt-get update && sudo apt-get install --no-install-recommends -y git xvfb"
-  },
-  // Use PIPX to update the existing installation of matlab-proxy
-  "updateContentCommand": "pipx upgrade matlab-proxy && pipx inject --include-apps --include-deps matlab-proxy jupyter-matlab-proxy jupyterlab",
-  "postStartCommand": "env MWI_APP_PORT=8888 MWI_ENABLE_TOKEN_AUTH=False run.sh -browser",
-  // Configure MATLAB's startup folder
   "containerEnv": {
+    // Configure MATLAB's startup folder
     "MATLAB_USERWORKDIR": "${containerWorkspaceFolder}",
     "MATLAB_USE_USERWORK": "1",
     // Enable embedding the desktop into VSCode's Simple Browser
@@ -44,9 +43,6 @@
         "ms-python.python"
       ],
       "settings": {
-        "MATLAB.indexWorkspace": true,
-        "MATLAB.matlabConnectionTiming": "onStart",
-        "MATLAB.telemetry": true,
         "MATLAB.signIn": true,
         // Adds MATLAB's PIPX environments to Python indexer
         "python.venvPath": "/home/matlab/.local/pipx/venvs/",
@@ -56,5 +52,8 @@
         ]
       }
     }
+  },
+  "hostRequirements": {
+    "cpus": 4
   }
 }
