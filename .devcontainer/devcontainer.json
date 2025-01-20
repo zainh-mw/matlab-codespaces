@@ -39,7 +39,7 @@
     "MATLAB_USERWORKDIR": "${containerWorkspaceFolder}",
     "MATLAB_USE_USERWORK": "1",
     // "MWI_CUSTOM_HTTP_HEADERS": "{'Content-Security-Policy': 'frame-ancestors *'}",
-    "MWI_CUSTOM_HTTP_HEADERS": "'{\"Content-Security-Policy\": \"frame-ancestors *\"}'"
+    "MWI_CUSTOM_HTTP_HEADERS": "{\"Content-Security-Policy\": \"frame-ancestors *\"}"
   },
   // Configure VSCode Extensions
   "customizations": {
