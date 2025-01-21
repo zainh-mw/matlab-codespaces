@@ -57,7 +57,7 @@ Each of them provide **all the access modes specified above**, and can be used f
 By default, when the codespaces from any of these configuration files is opened in VS Code.
 1. MATLAB will open in a browser tab embedded into the VS Code interface.
 2. You can sign in to the page to continue using the MATLAB IDE, or close the tab.
-3. T
+
 
 Choose the configuration that is closest to your needs, and tailor it to your liking!
 
