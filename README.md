@@ -15,7 +15,7 @@ Once you have MATLAB and the necessary extensions and packages installed into th
 
 1. Run & Debug MATLAB files in the VS Code editor.</br>
    
-   ![Run and Debug MATLAB in VS Code](img/RunAndDebugInVSCode.mp4)
+   ![Run and Debug MATLAB in VS Code](img/RunAndDebugInVSCode.gif)
    
    For more information, see [MATLAB Extension for Visual Studio Code](https://github.com/mathworks/MATLAB-extension-for-vscode).
 
@@ -27,19 +27,23 @@ Once you have MATLAB and the necessary extensions and packages installed into th
 
 3. Run MATLAB code using Jupyter Notebooks in VS Code.</br>
    For more information, see [Jupyter Notebooks in VS Code](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
-   ![Jupyter Notebook In VS Code](img/JupyterNotebookInVSCode.mp4)
+   ![Jupyter Notebook In VS Code](img/JupyterNotebookInVSCode.gif)
 
 ### Access MATLAB using JupyterLab
+Codespaces support [opening your codespace in JupyterLab](https://docs.github.com/en/codespaces/developing-in-a-codespace/getting-started-with-github-codespaces-for-machine-learning#opening-your-codespace-in-jupyterlab) as shown below:
 
-Codespaces also support [opening your codespace in JupyterLab](https://docs.github.com/en/codespaces/developing-in-a-codespace/getting-started-with-github-codespaces-for-machine-learning#opening-your-codespace-in-jupyterlab).
+![Open In JupyterLab](img/OpenInJupyterLab.gif)
 
-Once you have `JupyterLab` and the [MATLAB Integration for Jupyter](https://github.com/mathworks/jupyter-matlab-proxy) installed, there are **two** ways in which you can use it from the JupyterLab Interface: 
+
+When you have `JupyterLab` and the [MATLAB Integration for Jupyter](https://github.com/mathworks/jupyter-matlab-proxy) installed, there are **two** ways in which you can use it from the JupyterLab Interface: 
 
 1. Run MATLAB code using Jupyter Notebooks
    <p><img width="600" src="https://github.com/mathworks/jupyter-matlab-proxy/raw/main/img/JupyterKernel.gif"></p>
 
 2. Access the MATLAB IDE in a browser window.</br>
    <p><img width="600" src="https://github.com/mathworks/jupyter-matlab-proxy/raw/main/img/JupyterMATLABDesktop.gif"></p>
+
+## Getting Started
 
 The examples in this repository show different ways you can configure your dev containers to run MATLAB in codespaces. For each example, you can find the corresponding `devcontainer.json` configuration file in the [.devcontainer](./.devcontainer) folder.
 
