@@ -13,21 +13,24 @@ By default codespaces start in a [Visual Studio Code](https://code.visualstudio.
 
 Once you have MATLAB and the necessary extensions and packages installed into the container, there are **three** ways in which you can use it from the VS Code interface: 
 
-1. Run & Debug MATLAB files in the VS Code editor.</br>
+**1. Run & Debug MATLAB files in the VS Code editor.**</br>
    
    ![Run and Debug MATLAB in VS Code](img/RunAndDebugInVSCode.gif)
    
    For more information, see [MATLAB Extension for Visual Studio Code](https://github.com/mathworks/MATLAB-extension-for-vscode).
 
 
-2. Access the MATLAB IDE in a browser window.</br>
+**2. Access the MATLAB IDE in a browser window.**</br>
 
    ![MATLAB Proxy](img/MATLABinBrowser.png)
+   
    For more information, see [MATLAB Proxy](https://github.com/mathworks/matlab-proxy?tab=readme-ov-file#usage).
 
-3. Run MATLAB code using Jupyter Notebooks in VS Code.</br>
-   For more information, see [Jupyter Notebooks in VS Code](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
+**3. Run MATLAB code using Jupyter Notebooks in VS Code.**</br>
+   
    ![Jupyter Notebook In VS Code](img/JupyterNotebookInVSCode.gif)
+
+   For more information, see [Jupyter Notebooks in VS Code](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
 
 ### Access MATLAB using JupyterLab
 Codespaces support [opening your codespace in JupyterLab](https://docs.github.com/en/codespaces/developing-in-a-codespace/getting-started-with-github-codespaces-for-machine-learning#opening-your-codespace-in-jupyterlab) as shown below:
@@ -37,11 +40,13 @@ Codespaces support [opening your codespace in JupyterLab](https://docs.github.co
 
 When you have `JupyterLab` and the [MATLAB Integration for Jupyter](https://github.com/mathworks/jupyter-matlab-proxy) installed, there are **two** ways in which you can use it from the JupyterLab Interface: 
 
-1. Run MATLAB code using Jupyter Notebooks
-   <p><img width="600" src="https://github.com/mathworks/jupyter-matlab-proxy/raw/main/img/JupyterKernel.gif"></p>
+**1. Run MATLAB code using Jupyter Notebooks.**</br>
+   
+   ![Run MATLAB code using Jupyter Notebooks](https://github.com/mathworks/jupyter-matlab-proxy/raw/main/img/JupyterKernel.gif)
 
-2. Access the MATLAB IDE in a browser window.</br>
-   <p><img width="600" src="https://github.com/mathworks/jupyter-matlab-proxy/raw/main/img/JupyterMATLABDesktop.gif"></p>
+**2. Access the MATLAB IDE in a browser window.**</br>
+      
+   ![Access the MATLAB IDE in a browser window](https://github.com/mathworks/jupyter-matlab-proxy/raw/main/img/JupyterMATLABDesktop.gif)
 
 ## Getting Started
 
