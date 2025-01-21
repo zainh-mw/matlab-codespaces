@@ -15,11 +15,13 @@
     "install-dependencies": "sudo apt-get update && sudo apt-get install --no-install-recommends -y git xvfb"
   },
   "updateContentCommand": {
+    // dockerhub containers from R2023a onwards use PIPX to install matlab-proxy
+    // For older releases use the "using-matlab-dockerfile" configuration
     "install-mifj-and-jupyterlab": "pipx upgrade matlab-proxy && pipx inject --include-apps --include-deps matlab-proxy jupyter-matlab-proxy jupyterlab"
   },
   "waitFor": "updateContentCommand",
   "postStartCommand": {
-    "start-matlab-desktop": "env MWI_APP_PORT=8888 MWI_ENABLE_TOKEN_AUTH=False run.sh -browser"
+    "start-matlab-desktop": "run.sh -browser"
   },
   "portsAttributes": {
     "8888": {
@@ -28,6 +30,8 @@
     }
   },
   "containerEnv": {
+    "MWI_APP_PORT": "8888",
+    "MWI_ENABLE_TOKEN_AUTH": "False",
     // Configure MATLAB's startup folder
     "MATLAB_USERWORKDIR": "${containerWorkspaceFolder}",
     "MATLAB_USE_USERWORK": "1",

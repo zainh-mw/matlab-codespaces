@@ -9,7 +9,7 @@
             d. Start Codespace in Jupyter
     See: https://github.com/mathworks-ref-arch/matlab-dockerfile
     */
-    "name": "Built using MathWorks Dockerfile Reference Architecture",
+    "name": "Built using MATLAB Dockerfile",
     "build": {
         "dockerfile": "Dockerfile",
         "args": {
@@ -20,14 +20,12 @@
     "onCreateCommand": {
         "install-dependencies": "sudo apt-get update && sudo apt-get install --no-install-recommends -y git python3 python3-pip xvfb"
     },
-    // Use system python to install MATLAB Integration for Jupyter and JupyterLab
     "updateContentCommand": {
         "install-mifj-and-jupyterlab": "sudo python3 -m pip install --upgrade matlab-proxy jupyter-matlab-proxy jupyterlab && sudo install-matlab-kernelspec"
     },
     "waitFor": "updateContentCommand",
-    // Comment out the postStart Command if you do not want the MATLAB Desktop
     "postStartCommand": {
-        "start-matlab-desktop": "env MWI_APP_PORT=8888 MWI_ENABLE_TOKEN_AUTH=False matlab-proxy-app"
+        "start-matlab-desktop": "matlab-proxy-app"
     },
     "portsAttributes": {
         "8888": {
@@ -36,6 +34,9 @@
         }
     },
     "containerEnv": {
+        "MWI_APP_PORT": "8888",
+        "MWI_ENABLE_TOKEN_AUTH": "False",
+        // Configure MATLAB's startup folder
         "MATLAB_USERWORKDIR": "${containerWorkspaceFolder}",
         "MATLAB_USE_USERWORK": "1",
         // Enable embedding the desktop into VSCode's Simple Browser
@@ -60,5 +61,5 @@
     },
     "hostRequirements": {
         "cpus": 4
-    },
+    }
 }
