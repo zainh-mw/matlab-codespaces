@@ -2,14 +2,64 @@
 
 This repository shows how to run MATLAB&reg; in [GitHub&trade; Codespaces](https://github.com/features/codespaces).
 
+Codespaces allow you to quickly bring up a development environment where you can continue developing on the code hosted in your Github repository, and this repository shows you how you could get MATLAB there.
+
+<details>
+<summary><b>When should I use a codespaces?</b></summary>
+
+* Hosting your MATLAB code on a Github repository 
+* Want your repo users to quickly have access to MATLAB
+* Easy to bring up more complicated environments with MATLAB and other softwares like Python/R/Etc.. 
+* Easy way to provide a consistent environment for students/researchers
+* Integrated with GIT, and makes it easy for them to contribute to your work/ submit homework.
+
+</details>
+
+<details>
+<summary><b>How can I use MATLAB in a codespace?</b></summary>
+
+You can:
+1. Run & Debug M files in VSCode
+2. Run MATLAB Code from Jupyter Notebooks in VSCode
+3. For everything else, you could switch over to using the MATLAB Desktop
+4. If you prefer running JupyterLab instead of VSCode, then you can also run notebooks and switch to the desktop there.
+
+For more on VSCode, see [Access MATLAB using Visual Studio Code](#access-matlab-using-visual-studio-code).
+
+For JupyterLab, see [Access MATLAB using JupyterLab](#access-matlab-using-jupyterlab).
+
+</details>
+
+<details>
+<summary><b>Great! Now I know I want to use codespaces, which configuration is should I use?</b></summary>
+
+
+ * Its all down to what you need from your MATLAB.
+   * If you only need MATLAB, and no other software, consider using one of the pre-built MATLAB Containers.
+     * See [mathworks/matlab](https://hub.docker.com/r/mathworks/matlab)
+     * Or [mathworks/matlab-deep-learning](https://hub.docker.com/r/mathworks/matlab-deep-learning)
+
+      See the [Using the MATLAB image on Docker Hub](#using-the-matlab-image-on-docker-hub) for more info.
+  
+   * If you need to tailor your installation of MATLAB with specific set of toolboxes, or install other software, then you could write your own Dockerfile.
+     * See [mathworks-ref-arch/matlab-dockerfile](https://github.com/mathworks-ref-arch/matlab-dockerfile)
+
+      See the [Using MATLAB Dockerfile](#using-matlab-dockerfile) for more info.
+
+   * Finally, if you already have devcontainer configuration and you would like to add MATLAB & its supporting tools you could use the MATLAB Feature for Devcontainers.
+
+      See the [Using the MATLAB Feature for Dev Container](#using-the-matlab-feature-for-dev-container) for more info.
+</details>
+
 ## Introduction
 
 A [codespace (GitHub Docs)](https://docs.github.com/en/codespaces/overview) is a development environment you can run in the cloud. Codespaces run in Docker containers called development containers, or [dev containers (GitHub Docs)](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers). You can customize your codespace by modifying `devcontainer.json`, the configuration file of the dev container.
 
 By default codespaces start in a [Visual Studio Code](https://code.visualstudio.com/) environment, but you could also use [JupyterLab](https://jupyter.org) as your IDE.
 
-### Access MATLAB using Visual Studio Code
 ![VSCode In Codespaces](img/VSCodeInCodespaces.png)
+
+### Access MATLAB using Visual Studio Code
 
 Once you have MATLAB and the necessary extensions and packages installed into the container, there are **three** ways in which you can use it from the VS Code interface: 
 
