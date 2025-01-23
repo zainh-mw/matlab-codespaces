@@ -189,7 +189,7 @@ You could click below to run this configuration in Codespaces:
 
 #### Option 3: Use the MATLAB Feature for Dev Containers
 
-Finally, if you already have devcontainer configuration and you would like to add MATLAB & its supporting tools you could use the MATLAB Feature for Devcontainers.
+Finally, if you already have devcontainer configuration and you would like to add MATLAB & its supporting tools you could use the [MATLAB Feature for Devcontainers](https://github.com/mathworks/devcontainer-features/tree/main/src/matlab).
 
 <details>
 <summary><b>Yes! Show me how to use the MATLAB Feature for Dev Containers.</b></summary>
