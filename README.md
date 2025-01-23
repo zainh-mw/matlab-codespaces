@@ -260,6 +260,18 @@ You could click below to run this configuration in Codespaces:
 </details>
 </details>
 
+<details>
+<summary><b>How do I create a configuration for my needs?</b></summary>
+
+As mentioned above, there are 3 configuration files in the [.devcontainer](./.devcontainer) folder for you to choose from.
+Tailor the one that is closest to your needs.
+
+We have also created a web application for you to generate a Dev Container configuration for you.
+
+Click [here](https://prabhakk-mw.github.io/matlab-codespaces), to give it a shot!
+
+</details>
+
 ## Introduction
 
 A [codespace (GitHub Docs)](https://docs.github.com/en/codespaces/overview) is a development environment you can run in the cloud. Codespaces run in Docker containers called development containers, or [dev containers (GitHub Docs)](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers). You can customize your codespace by modifying `devcontainer.json`, the configuration file of the dev container.
