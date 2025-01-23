@@ -33,22 +33,274 @@ For JupyterLab, see [Access MATLAB using JupyterLab](#access-matlab-using-jupyte
 <details>
 <summary><b>Great! Now I know I want to use codespaces, which configuration is should I use?</b></summary>
 
+This repository contains three Dev Container configuration files.
+These configuration files **mainly** differ in the way MATLAB & supporting tools are installed into them.
+Each of them provide **all the access modes specified above**, and can be used from the **VS Code, or JupyterLab** interface.
 
- * Its all down to what you need from your MATLAB.
-   * If you only need MATLAB, and no other software, consider using one of the pre-built MATLAB Containers.
-     * See [mathworks/matlab](https://hub.docker.com/r/mathworks/matlab)
-     * Or [mathworks/matlab-deep-learning](https://hub.docker.com/r/mathworks/matlab-deep-learning)
+By default, when the codespaces from any of these configuration files is opened in VS Code.
+1. MATLAB will open in a browser tab embedded into the VS Code interface.
+2. You can sign in to the page to continue using the MATLAB IDE, or close the tab.
 
-      See the [Using the MATLAB image on Docker Hub](#using-the-matlab-image-on-docker-hub) for more info.
+----
+
+#### Option 1: Use prebuilt MATLAB Containers
+
+If you only need MATLAB, and no other software, consider using one of the pre-built MATLAB Containers.
+* See [mathworks/matlab](https://hub.docker.com/r/mathworks/matlab)
+* Or [mathworks/matlab-deep-learning](https://hub.docker.com/r/mathworks/matlab-deep-learning)
+
+<details>
+<summary><b>Yes! Show me how to use a prebuilt MathWorks image for my codespace...</b></summary>
+
+Use this [devcontainer.json](.devcontainer/devcontainer.json) when you have an image that is one of the [MathWorks official images published on Docker Hub](https://hub.docker.com/r/mathworks/matlab), or is built on top of them. See [Building on MATLAB Docker Image](https://github.com/mathworks-ref-arch/matlab-dockerfile/tree/main/alternates/building-on-matlab-docker-image) for more information.
+
+<details>
+<summary>Click to see <b>devcontainer.json</b></summary>
+
+```json
+{
+  /* This DevContainer configuration file demonstrates
+      1. Using the mathworks/matlab image on Dockerhub 
+      2. Installation of MATLAB Integration for Jupyter & JupyterLab  
+      3. Configuration of VSCode environment for following modes of access:
+          a. MATLAB in a Browser
+          b. Directly from VSCode, using the MATLAB extension for VSCode
+          c. Using Jupyter Notebooks in VSCode
+          d. Start Codespace in Jupyter
+  See: https://hub.docker.com/r/mathworks/matlab for available images.
+  */
+  "name": "Built using MathWorks Docker Hub Image",
+  "image": "mathworks/matlab:latest",
+  "onCreateCommand": {
+    "install-dependencies": "sudo apt-get update && sudo apt-get install --no-install-recommends -y git xvfb"
+  },
+  "updateContentCommand": {
+    // dockerhub containers from R2023a onwards use PIPX to install matlab-proxy
+    // For older releases use the "using-matlab-dockerfile" configuration
+    "install-mifj-and-jupyterlab": "pipx upgrade matlab-proxy && pipx inject --include-apps --include-deps matlab-proxy jupyter-matlab-proxy jupyterlab"
+  },
+  "waitFor": "updateContentCommand",
+  "postStartCommand": {
+    "start-matlab-desktop": "run.sh -browser"
+  },
+  "portsAttributes": {
+    "8888": {
+      "label": "MATLAB",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "containerEnv": {
+    "MWI_APP_PORT": "8888",
+    "MWI_ENABLE_TOKEN_AUTH": "False",
+    // Configure MATLAB's startup folder
+    "MATLAB_USERWORKDIR": "${containerWorkspaceFolder}",
+    "MATLAB_USE_USERWORK": "1",
+    // Enable embedding the desktop into VSCode's Simple Browser
+    "MWI_CUSTOM_HTTP_HEADERS": "{\"Content-Security-Policy\": \"frame-ancestors *\"}"
+  },
+  // Configure VSCode Extensions
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "MathWorks.language-matlab",
+        "ms-toolsai.jupyter",
+        "ms-python.python"
+      ],
+      "settings": {
+        "MATLAB.signIn": true,
+        // Adds MATLAB's PIPX environments to Python indexer
+        "python.venvPath": "/home/matlab/.local/pipx/venvs/",
+        // Marks MATLAB Kernel as a trusted source
+        "jupyter.kernels.trusted": [
+          "/home/matlab/.local/pipx/venvs/matlab-proxy/share/jupyter/kernels/jupyter_matlab_kernel/kernel.json"
+        ]
+      }
+    }
+  },
+  "hostRequirements": {
+    "cpus": 4
+  }
+}
+```
+</details>
+
+You can run the dev container configured above in Codespaces:
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/mathworks-ref-arch/matlab-codespaces?template=false&devcontainer_path=.devcontainer%2Fdevcontainer.json)
+</details>
+
+-----
+#### Option 2 : Create a container using a Dockerfile
+
+If you need to tailor your installation of MATLAB with specific set of toolboxes, or install other software, then you could write your own Dockerfile. See [mathworks-ref-arch/matlab-dockerfile](https://github.com/mathworks-ref-arch/matlab-dockerfile)
+
+<details>
+<summary><b> Yes! I want to use my own Dockerfile. Show me how...</b></summary>
   
-   * If you need to tailor your installation of MATLAB with specific set of toolboxes, or install other software, then you could write your own Dockerfile.
-     * See [mathworks-ref-arch/matlab-dockerfile](https://github.com/mathworks-ref-arch/matlab-dockerfile)
+Use this [devcontainer.json](.devcontainer/using-matlab-dockerfile/devcontainer.json) when you want to build an Image from a Dockerfile.
+An example Dockerfile taken from the [MATLAB Dockerfile](https://github.com/mathworks-ref-arch/matlab-dockerfile) repository is available within the `.devcontainer/using-matlab-dockerfile` folder.
 
-      See the [Using MATLAB Dockerfile](#using-matlab-dockerfile) for more info.
+<details>
+<summary><b>devcontainer.json</b></summary>
 
-   * Finally, if you already have devcontainer configuration and you would like to add MATLAB & its supporting tools you could use the MATLAB Feature for Devcontainers.
+```json
+{
+      /* This DevContainer configuration demonstrates
+          1. Building image from Dockerfile from mathworks-ref-arch/matlab-dockerfile
+          2. Installation of MATLAB Integration for Jupyter & JupyterLab  
+          3. Configuration of VSCode environment for following modes of access:
+              a. MATLAB in a Browser
+              b. Directly from VSCode, using the MATLAB extension for VSCode
+              c. Using Jupyter Notebooks in VSCode
+              d. Start Codespace in Jupyter
+      See: https://github.com/mathworks-ref-arch/matlab-dockerfile
+      */
+      "name": "Built using MATLAB Dockerfile",
+      "build": {
+          "dockerfile": "Dockerfile",
+          "args": {
+              "MATLAB_RELEASE": "r2024b",
+              "MATLAB_PRODUCT_LIST": "MATLAB Symbolic_Math_Toolbox"
+          }
+      },
+      "onCreateCommand": {
+          "install-dependencies": "sudo apt-get update && sudo apt-get install --no-install-recommends -y git python3 python3-pip xvfb"
+      },
+      "updateContentCommand": {
+          "install-mifj-and-jupyterlab": "sudo python3 -m pip install --upgrade matlab-proxy jupyter-matlab-proxy jupyterlab && sudo install-matlab-kernelspec"
+      },
+      "waitFor": "updateContentCommand",
+      "postStartCommand": {
+          "start-matlab-desktop": "matlab-proxy-app"
+      },
+      "portsAttributes": {
+          "8888": {
+              "label": "MATLAB",
+              "onAutoForward": "openPreview"
+          }
+      },
+      "containerEnv": {
+          "MWI_APP_PORT": "8888",
+          "MWI_ENABLE_TOKEN_AUTH": "False",
+          // Configure MATLAB's startup folder
+          "MATLAB_USERWORKDIR": "${containerWorkspaceFolder}",
+          "MATLAB_USE_USERWORK": "1",
+          // Enable embedding the desktop into VSCode's Simple Browser
+          "MWI_CUSTOM_HTTP_HEADERS": "{\"Content-Security-Policy\": \"frame-ancestors *\"}"
+      },
+      // Configure VSCode Extensions
+      "customizations": {
+          "vscode": {
+              "extensions": [
+                  "MathWorks.language-matlab",
+                  "ms-toolsai.jupyter",
+                  "ms-python.python"
+              ],
+              "settings": {
+                  "MATLAB.signIn": true,
+                  // Marks MATLAB Kernel as a trusted source
+                  "jupyter.kernels.trusted": [
+                      "/usr/share/jupyter/kernels/jupyter_matlab_kernel/kernel.json"
+                  ]
+              }
+          }
+      },
+      "hostRequirements": {
+          "cpus": 4
+      }
+  }
+```
+</details>
 
-      See the [Using the MATLAB Feature for Dev Container](#using-the-matlab-feature-for-dev-container) for more info.
+You can run this dev container in Codespaces:
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/mathworks-ref-arch/matlab-codespaces?template=false&devcontainer_path=.devcontainer%2Fusing-matlab-dockerfile%2Fdevcontainer.json)
+</details>
+
+-----
+
+#### Option 3: Use the MATLAB Feature for Dev Containers
+
+Finally, if you already have devcontainer configuration and you would like to add MATLAB & its supporting tools you could use the MATLAB Feature for Devcontainers.
+
+<details>
+<summary><b>Yes! Show me how to use the MATLAB Feature for Dev Containers.</b></summary>
+  
+Use this [devcontainer.json](.devcontainer/using-devcontainer-feature/devcontainer.json) when you would like to add MATLAB & its supporting tools into an existing Dev Container configuration using  self-contained units of code called [Features (GitHub)](https://github.com/devcontainers/features).
+
+<details>
+<summary><b>devcontainer.json</b></summary>
+
+```json
+{
+  /* This DevContainer configuration demonstrates
+      1. Building image using Dev Container Features
+      2. Installation of MATLAB Integration for Jupyter & JupyterLab  
+      3. Configuration of VSCode environment for following modes of access:
+          a. MATLAB in a Browser
+          b. Directly from VSCode, using the MATLAB extension for VSCode
+          c. Using Jupyter Notebooks in VSCode
+          d. Start Codespace in Jupyter
+  See: https://containers.dev/implementors/features/
+  */
+  "name": "Built using Dev Container Features",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/mathworks/devcontainer-features/matlab": {
+      // For more options, See: https://github.com/mathworks/devcontainer-features/tree/main/src/matlab
+      "release": "r2024b",
+      "products": "MATLAB Symbolic_Math_Toolbox",
+      "installMatlabProxy": "true",
+      "startInDesktop": "true",
+      "installJupyterMatlabProxy": true
+    },
+    "ghcr.io/devcontainers/features/python": {
+      "version": "os-provided",
+      "installJupyterlab": true,
+      "configureJupyterlabAllowOrigin": "*"
+    }
+  },
+  "portsAttributes": {
+    "8888": {
+      "label": "MATLAB",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "containerEnv": {
+    "MWI_APP_PORT": "8888",
+    "MWI_ENABLE_TOKEN_AUTH": "False",
+    // Configure MATLAB's startup folder
+    "MATLAB_USERWORKDIR": "${containerWorkspaceFolder}",
+    "MATLAB_USE_USERWORK": "1",
+    // Enable embedding the desktop into VSCode's Simple Browser
+    "MWI_CUSTOM_HTTP_HEADERS": "{\"Content-Security-Policy\": \"frame-ancestors *\"}"
+  },
+  // Configure VSCode Extensions
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "MathWorks.language-matlab",
+        "ms-toolsai.jupyter",
+        "ms-python.python"
+      ],
+      "settings": {
+        "MATLAB.signIn": true,
+        // Marks MATLAB Kernel as a trusted source
+        "jupyter.kernels.trusted": [
+          "/usr/share/jupyter/kernels/jupyter_matlab_kernel/kernel.json"
+        ]
+      }
+    }
+  },
+  "hostRequirements": {
+    "cpus": 4
+  },
+  // Need to specify a user to use the startInDesktop feature.
+  "containerUser": "vscode"
+}
+```
+</details>
+</details>
 </details>
 
 ## Introduction
