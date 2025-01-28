@@ -7,12 +7,77 @@ Codespaces allow you to quickly bring up a development environment where you can
 <details>
 <summary><b>When should I use a codespaces?</b></summary>
 
-* Hosting your MATLAB code on a Github repository 
-* Want your repo users to quickly have access to MATLAB
-* Easy to bring up more complicated environments with MATLAB and other softwares like Python/R/Etc.. 
-* Easy way to provide a consistent environment for students/researchers
-* Integrated with GIT, and makes it easy for them to contribute to your work/ submit homework.
+```
+If you own a Github repository hosting MATLAB Code, codespaces provide a easy way for the users of your repository to:
+  a. provision a consistent development environment  
+  b. run your code in MATLAB and any other supporting softwares,
+  c. use git to contribute back to your repository.
+```
+GitHub Codespaces can be a powerful tool for development, particularly in scenarios where you need a consistent and accessible development environment. Here are some situations where using a GitHub Codespace might be beneficial:
 
+1. **Onboarding New Team Members**: Codespaces can help new developers get started quickly by providing a pre-configured environment that matches the team's setup. This reduces the time spent on configuring local development environments.
+
+2. **Working on Multiple Projects**: If you're juggling multiple projects, Codespaces can help by providing isolated environments for each project. This prevents dependency conflicts and ensures each project has the necessary tools and libraries.
+
+3. **Collaborative Development**: Codespaces can be useful for pair programming or collaborative development. Team members can easily share their environment, making it easier to work together on code.
+
+4. **Developing on Low-Power Devices**: If you're working on a device with limited resources, like a tablet or a low-power laptop, Codespaces can offload the heavy lifting to the cloud, providing a powerful development environment regardless of your local hardware.
+
+5. **Experimenting with New Tools or Technologies**: If you want to try out a new language, framework, or tool without affecting your local setup, Codespaces provide a sandbox environment where you can experiment freely.
+
+6. **Contributing to Open Source Projects**: Codespaces can simplify the process of contributing to open source projects by providing a consistent environment that matches the project's requirements, reducing setup time and potential configuration issues.
+
+7. **Running CI/CD Workflows Locally**: You can use Codespaces to run tests and build processes in an environment that closely mirrors your CI/CD setup, ensuring consistency between local development and production environments.
+
+8. **Accessing Development Environment from Anywhere**: Since Codespaces are cloud-based, you can access your development environment from any device with an internet connection, making it easy to switch between devices or work remotely.
+
+Overall, GitHub Codespaces are ideal when you need a flexible, consistent, and powerful development environment that can be accessed from anywhere.
+
+A few scenarios where these capabilities might be useful are:
+
+As an educator you could use codespaces when:
+1. You want to develop a workshop where all your students can spin up the same development environment irrespective of the Operating System or machine from which they are working.
+2. Create homework assignments, where all your students can develop solutions and submit their homework as Pull requests. Github codespaces can be used with [Github Classrooms](https://docs.github.com/en/education/manage-coursework-with-github-classroom/get-started-with-github-classroom/about-github-classroom) to streamline this!
+
+As a researcher you could use codespaces to:
+1. Have your fellow researchers spin up the exact environment in which they can run your code. Where you have full control of the version of MATLAB and the toolboxes required to work on the code.
+2. Provide an easy way for them to collaborate with you, and share their suggestions with you. 
+
+</details>
+
+<details>
+<summary><b>When should I use Codespaces instead of MATLAB Online?</b></summary>
+
+Yes, you can always have your users work with your repository by running it directly in MATLAB Online.
+See [Open Github Repositories in MATLAB Online](https://www.mathworks.com/help/matlab/matlab_env/open-github-repositories-in-matlab-online.html) for more information on how to do that.
+
+When deciding between GitHub Codespaces and MATLAB Online for MATLAB development, consider the following factors to determine which is more suitable for your needs:
+
+### Use GitHub Codespaces if:
+1. **Integration with GitHub**: You want seamless integration with GitHub repositories, including easy access to version control, pull requests, and collaboration features directly within the development environment.
+
+2. **Customizable Environment**: You need a highly customizable development environment where you can install additional tools, libraries, or dependencies alongside MATLAB. Codespaces allow you to define your environment using Dockerfiles or devcontainer.json configurations.
+
+3. **Multi-language Projects**: You're working on projects that involve multiple programming languages or tools beyond MATLAB. Codespaces can host a variety of development environments, making it easier to switch contexts or integrate different technologies.
+
+4. **Collaboration**: You require advanced collaboration features, such as shared editing or live collaboration with other developers, which Codespaces can facilitate through its integration with Visual Studio Code.
+
+5. **Consistent Development Environment**: You want to ensure consistency across different development environments, particularly if you're working in a team. Codespaces provide a consistent setup that can be easily replicated by all team members.
+
+6. **Resource Flexibility**: You need more control over the resources allocated to your development environment (e.g., CPU, memory), which can be adjusted in Codespaces to better suit your project’s demands.
+
+### Use MATLAB Online if:
+1. **MATLAB-Specific Features**: You need access to MATLAB-specific features, toolboxes, or apps that are fully supported and optimized in MATLAB Online. This includes specialized MATLAB functionalities that might not be as seamlessly integrated in a Codespace.
+
+2. **Simplicity and Ease of Use**: You prefer a straightforward, ready-to-use MATLAB environment without the need for additional configuration or setup. MATLAB Online provides an out-of-the-box experience tailored specifically for MATLAB users.
+
+3. **Educational Use**: You're a student or educator using MATLAB for coursework or teaching. MATLAB Online is often provided by educational institutions and includes features designed for learning and instruction.
+
+4. **MATLAB-Only Projects**: Your development focus is solely on MATLAB, with no need for additional languages or tools. MATLAB Online is optimized specifically for MATLAB workflows.
+
+5. **Licensing and Access**: You have access to MATLAB Online through an existing license, which might be more cost-effective or convenient compared to setting up a separate environment in Codespaces.
+
+Ultimately, the choice between GitHub Codespaces and MATLAB Online depends on your specific needs, the complexity of your project, and the tools you require. If your work involves heavy collaboration, integration with other tools, or requires a highly customizable environment, Codespaces might be the better option. However, for straightforward MATLAB development with access to MATLAB-specific features, MATLAB Online could be more appropriate.
 </details>
 
 <details>
