@@ -5,7 +5,7 @@ This repository shows how to run MATLAB&reg; in [GitHub&trade; Codespaces](https
 
 ## Table of Contents
 - [Introduction](#introduction)
-  - [When should I run MATLAB in Codespaces?](#when-should-i-run-matlab-in-codespaces)
+  - [When should I use Codespaces for MATLAB?](#when-should-i-use-codespaces-for-matlab)
   - [When should I use MATLAB Online instead?](#when-should-i-use-matlab-online-instead)
   - [How do I configure my codespace?](#how-do-i-configure-up-my-codespace)
 - [Run MATLAB in Codespaces](#run-matlab-in-codespaces)
@@ -19,10 +19,8 @@ This repository shows how to run MATLAB&reg; in [GitHub&trade; Codespaces](https
 A [codespace (GitHub Docs)](https://docs.github.com/en/codespaces/overview) is a development environment you can run in the cloud.
 By default, codespaces start in a [Visual Studio Code](https://code.visualstudio.com/) environment, but you can also use a [JupyterLab](https://jupyter.org) environment instead.
 
-#### When should I run MATLAB in Codespaces?
-
 <details>
-<summary><b>When should I use a codespaces?</b></summary>
+<summary><b>When should I use codespaces for MATLAB?</b></summary>
 
 ```
 If you own a Github repository hosting MATLAB Code, codespaces provide a easy way for the users of your repository to:
@@ -63,11 +61,9 @@ As a researcher you could use codespaces to:
 </details>
 
 <details>
-<summary><b>When should I use Codespaces instead of MATLAB Online?</b></summary>
+<summary><b>When should I use MATLAB Online instead?</b></summary>
 
-Yes, you can always have your users work with your repository by running it directly in MATLAB Online.
-See [Open Github Repositories in MATLAB Online](https://www.mathworks.com/help/matlab/matlab_env/open-github-repositories-in-matlab-online.html) for more information on how to do that.
-
+For information on using MATLAB Online with your Github repositories, see [Open Github Repositories in MATLAB Online](https://www.mathworks.com/help/matlab/matlab_env/open-github-repositories-in-matlab-online.html).  
 When deciding between GitHub Codespaces and MATLAB Online for MATLAB development, consider the following factors to determine which is more suitable for your needs:
 
 ### Use GitHub Codespaces if:
@@ -113,7 +109,7 @@ For JupyterLab, see [Access MATLAB using JupyterLab](#access-matlab-using-jupyte
 </details>
 
 <details>
-<summary><b>Great! Now I know I want to use codespaces, which configuration is should I use?</b></summary>
+<summary><b> How do I configure my codespace?</b></summary>
 
 This repository contains three Dev Container configuration files.
 These configuration files **mainly** differ in the way MATLAB & supporting tools are installed into them.
