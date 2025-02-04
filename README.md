@@ -1,8 +1,25 @@
 # Run MATLAB in GitHub Codespaces
 
-This repository shows how to run MATLAB&reg; in [GitHub&trade; Codespaces](https://github.com/features/codespaces).
+This repository shows how to run MATLAB&reg; in [GitHub&trade; Codespaces](https://github.com/features/codespaces), so you can quickly start a development environment for developing the MATLAB code hosted in your Github repository.
 
-Codespaces allow you to quickly bring up a development environment where you can continue developing on the code hosted in your Github repository, and this repository shows you how you could get MATLAB there.
+
+## Table of Contents
+- [Introduction](#introduction)
+  - [When should I run MATLAB in Codespaces?](#when-should-i-run-matlab-in-codespaces)
+  - [When should I use MATLAB Online instead?](#when-should-i-use-matlab-online-instead)
+  - [How do I configure my codespace?](#how-do-i-configure-up-my-codespace)
+- [Run MATLAB in Codespaces](#run-matlab-in-codespaces)
+  - [Using VSCode](#using-vscode)
+  - [Using JupyterLab](#using-jupyterlab)
+- [Configuring Run MATLAB in Codespaces](#run-matlab-in-codespaces)
+    
+
+## Introduction
+
+A [codespace (GitHub Docs)](https://docs.github.com/en/codespaces/overview) is a development environment you can run in the cloud.
+By default, codespaces start in a [Visual Studio Code](https://code.visualstudio.com/) environment, but you can also use a [JupyterLab](https://jupyter.org) environment instead.
+
+#### When should I run MATLAB in Codespaces?
 
 <details>
 <summary><b>When should I use a codespaces?</b></summary>
@@ -333,15 +350,15 @@ Tailor the one that is closest to your needs.
 
 </details>
 
-## Introduction
+## Introductions
 
-A [codespace (GitHub Docs)](https://docs.github.com/en/codespaces/overview) is a development environment you can run in the cloud. Codespaces run in Docker containers called development containers, or [dev containers (GitHub Docs)](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers). You can customize your codespace by modifying `devcontainer.json`, the configuration file of the dev container.
+A [codespace (GitHub Docs)](https://docs.github.com/en/codespaces/overview) is a development environment you can run in the cloud. Codespaces run in Docker containers called development containers, or [dev containers (GitHub Docs)](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers). You can customize your codespace by modifying the configuration file of the dev container, named `devcontainer.json`.
 
-By default codespaces start in a [Visual Studio Code](https://code.visualstudio.com/) environment, but you could also use [JupyterLab](https://jupyter.org) as your IDE.
+
 
 ![VSCode In Codespaces](img/VSCodeInCodespaces.png)
 
-### Access MATLAB using Visual Studio Code
+### Using Visual Studio Code
 
 Once you have MATLAB and the necessary extensions and packages installed into the container, there are **three** ways in which you can use it from the VS Code interface: 
 
@@ -364,7 +381,7 @@ Once you have MATLAB and the necessary extensions and packages installed into th
 
    For more information, see [Jupyter Notebooks in VS Code](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
 
-### Access MATLAB using JupyterLab
+### Using JupyterLab
 Codespaces support [opening your codespace in JupyterLab](https://docs.github.com/en/codespaces/developing-in-a-codespace/getting-started-with-github-codespaces-for-machine-learning#opening-your-codespace-in-jupyterlab) as shown below:
 
 ![Open In JupyterLab](img/OpenInJupyterLab.gif)
