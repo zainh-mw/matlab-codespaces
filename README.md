@@ -10,9 +10,7 @@ This repository shows how to run MATLAB&reg; in [GitHub&trade; Codespaces](https
   - [How do I configure my codespace?](#how-do-i-configure-up-my-codespace)
 - [Run MATLAB in Codespaces](#run-matlab-in-codespaces)
   - [Using VSCode](#using-vscode)
-  - [Using JupyterLab](#using-jupyterlab)
-- [Configuring Run MATLAB in Codespaces](#run-matlab-in-codespaces)
-    
+  - [Using JupyterLab](#using-jupyterlab)    
 
 ## Introduction
 
