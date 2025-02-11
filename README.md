@@ -27,7 +27,7 @@ Codespaces run in Docker containers called development containers, or [dev conta
 | ------------- | ------------- |------------- |
 |Use MATLAB only|Use a prebuilt [MATLAB Container on Docker Hub](https://hub.docker.com/r/mathworks/matlab). Configure your codespace using [devcontainer.json](.devcontainer/devcontainer.json).|[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/mathworks-ref-arch/matlab-codespaces?template=false&devcontainer_path=.devcontainer%2Fdevcontainer.json)|
 |Tailor MATLAB installation with specific toolboxes or other software|Create a custom MATLAB container image using [MATLAB Dockerfile](https://github.com/mathworks-ref-arch/matlab-dockerfile). You can see an example Dockerfile in the `.devcontainer/using-matlab-dockerfile` folder. Configure your codespace using [devcontainer.json](.devcontainer/using-matlab-dockerfile/devcontainer.json).|[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/mathworks-ref-arch/matlab-codespaces?template=false&devcontainer_path=.devcontainer%2Fusing-matlab-dockerfile%2Fdevcontainer.json)|
-|Add MATLAB to an existing devcontainer configuration|Use the [MATLAB Feature for Devcontainers](https://github.com/mathworks/devcontainer-features/tree/main/src/matlab). Configure your codespace using [devcontainer.json](.devcontainer/using-devcontainer-feature/devcontainer.json)|[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/mathworks-ref-arch/matlab-codespaces?template=false&devcontainer_path=.devcontainer%2Fusing-devcontainer-feature%2Fdevcontainer.json)||
+|Add MATLAB to an existing devcontainer configuration|Use the [MATLAB Feature for Devcontainers](https://github.com/mathworks/devcontainer-features/tree/main/src/matlab). Configure your codespace using [devcontainer.json](.devcontainer/using-devcontainer-feature/devcontainer.json).|[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/mathworks-ref-arch/matlab-codespaces?template=false&devcontainer_path=.devcontainer%2Fusing-devcontainer-feature%2Fdevcontainer.json)||
 
 ## Use MATLAB in Codespaces 
 
@@ -101,6 +101,6 @@ After setting up and MATLAB and JupyterLab in your codespace, you can:
 
 ---
 
-Copyright 2024 The MathWorks, Inc.
+Copyright 2024-2025 The MathWorks, Inc.
 
 ---
