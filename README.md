@@ -25,9 +25,9 @@ Codespaces run in Docker containers called development containers, or [dev conta
 
 | Use Case  | Recommendation | Start Codespace Using Recommended Configuration |
 | ------------- | ------------- |------------- |
-|Use MATLAB only|Use a prebuilt [MATLAB Container on Docker Hub](https://hub.docker.com/r/mathworks/matlab). Configure your codespace using [devcontainer.json](.devcontainer/devcontainer.json).|[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/mathworks-ref-arch/matlab-codespaces?template=false&devcontainer_path=.devcontainer%2Fdevcontainer.json)|
-|Tailor MATLAB installation with specific toolboxes or other software|Create a custom MATLAB container image using [MATLAB Dockerfile](https://github.com/mathworks-ref-arch/matlab-dockerfile). You can see an example Dockerfile in the `.devcontainer/using-matlab-dockerfile` folder. Configure your codespace using [devcontainer.json](.devcontainer/using-matlab-dockerfile/devcontainer.json).|[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/mathworks-ref-arch/matlab-codespaces?template=false&devcontainer_path=.devcontainer%2Fusing-matlab-dockerfile%2Fdevcontainer.json)|
-|Add MATLAB to an existing devcontainer configuration|Use the [MATLAB Feature for Devcontainers](https://github.com/mathworks/devcontainer-features/tree/main/src/matlab). Configure your codespace using [devcontainer.json](.devcontainer/using-devcontainer-feature/devcontainer.json).|[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/mathworks-ref-arch/matlab-codespaces?template=false&devcontainer_path=.devcontainer%2Fusing-devcontainer-feature%2Fdevcontainer.json)||
+|Use MATLAB only|Use a prebuilt [MATLAB Container on Docker Hub](https://hub.docker.com/r/mathworks/matlab). <br><br>Configure your codespace using this [devcontainer.json](.devcontainer/devcontainer.json).|[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/mathworks-ref-arch/matlab-codespaces?template=false&devcontainer_path=.devcontainer%2Fdevcontainer.json)|
+|Customize MATLAB installation with specific toolboxes or other software|Create a custom MATLAB container image using [MATLAB Dockerfile](https://github.com/mathworks-ref-arch/matlab-dockerfile). You can see an example Dockerfile in the `.devcontainer/using-matlab-dockerfile` folder. <br><br>Configure your codespace using this [devcontainer.json](.devcontainer/using-matlab-dockerfile/devcontainer.json).|[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/mathworks-ref-arch/matlab-codespaces?template=false&devcontainer_path=.devcontainer%2Fusing-matlab-dockerfile%2Fdevcontainer.json)|
+|Add MATLAB to an existing devcontainer configuration|Use the [MATLAB Feature for Devcontainers](https://github.com/mathworks/devcontainer-features/tree/main/src/matlab). <br><br>Configure your codespace using this [devcontainer.json](.devcontainer/using-devcontainer-feature/devcontainer.json).|[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/mathworks-ref-arch/matlab-codespaces?template=false&devcontainer_path=.devcontainer%2Fusing-devcontainer-feature%2Fdevcontainer.json)||
 
 ## Use MATLAB in Codespaces 
 
@@ -58,17 +58,18 @@ Once you have MATLAB set up in your codespace, you can use VS Code to:
    For more information, see [MATLAB Extension for Visual Studio Code](https://github.com/mathworks/MATLAB-extension-for-vscode).
 
 
-2. **Access the MATLAB IDE in a browser tab.**</br>
+2. **Access MATLAB in a browser tab.**</br>
 
    ![MATLAB Proxy](img/MATLABinBrowser.png)
 
    For more information on using MATLAB in the browser, see [MATLAB Proxy](https://github.com/mathworks/matlab-proxy).
 
-3. **Run MATLAB code using Jupyter Notebooks.**</br>
+3. **Run MATLAB code using Jupyter Notebooks in VS Code.**</br>
+
+   You can run MATLAB in Jupyter Notebooks inside VS Code. For more information on using Jupyter Notebooks in VS Code, see [Jupyter Notebooks in VS Code (VS Code Documentation)](https://code.visualstudio.com/docs/datascience/jupyter-notebooks).
    
    ![Jupyter Notebook In VS Code](img/JupyterNotebookInVSCode.gif)
 
-   For more information on using Jupyter Notebooks in VS Code, see [Jupyter Notebooks in VS Code](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
 
 ### What Can I Do With MATLAB in JupyterLab?
 
